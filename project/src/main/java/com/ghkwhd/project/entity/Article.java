@@ -1,6 +1,7 @@
 package com.ghkwhd.project.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+@Getter
 public class Article {
 
     @Id // 대푯값을 지정
