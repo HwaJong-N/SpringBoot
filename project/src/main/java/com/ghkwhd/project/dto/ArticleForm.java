@@ -1,25 +1,15 @@
 package com.ghkwhd.project.dto;
 
 import com.ghkwhd.project.entity.Article;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 
+@AllArgsConstructor
+@ToString
 public class ArticleForm {
 
     private String title;
     private String content;
-
-    public ArticleForm(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
-
-    @Override
-    // 데이터가 잘 받아졌는지 확인을 위해 작성
-    public String toString() {
-        return "ArticleForm{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 
     // Article(Entity) 객체를 반환
     public Article toEntity() {
