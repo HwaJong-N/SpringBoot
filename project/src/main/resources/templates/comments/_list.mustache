@@ -1,0 +1,14 @@
+<div id = "comments-list">
+    <!-- commentDto가 여러 개의 데이터라면 자동으로 반복해서 실행됨 -->
+    {{#commentDtos}}
+        <!-- id에는 commentDto 내의 id가 삽입됨 -->
+        <div class = "card m-3" id = "comment-{{id}}">
+            <div class="card-header">
+                {{nickname}}
+            </div>
+            <div class="card-body">
+                {{body}}
+            </div>
+        </div>
+    {{/commentDtos}}
+</div>

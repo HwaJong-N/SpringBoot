@@ -8,6 +8,7 @@ import lombok.ToString;
 @ToString
 public class ArticleForm {
 
+    private Long id;
     private String title;
     private String content;
 
@@ -15,6 +16,6 @@ public class ArticleForm {
     public Article toEntity() {
         // 생성자 호출
         // id는 null값, title과 content는 DTO의 title, content를 사용
-        return new Article(null, title, content);
+        return new Article(id, title, content);
     }
 }
