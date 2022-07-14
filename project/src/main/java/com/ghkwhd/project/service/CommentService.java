@@ -1,5 +1,6 @@
 package com.ghkwhd.project.service;
 
+import com.ghkwhd.project.annotation.RunningTime;
 import com.ghkwhd.project.dto.CommentDto;
 import com.ghkwhd.project.entity.Article;
 import com.ghkwhd.project.entity.Comment;
@@ -84,6 +85,7 @@ public class CommentService {
         return CommentDto.createCommentDto(updated);
     }
 
+    @RunningTime
     @Transactional
     public CommentDto delete(Long id) {
         // 댓글 조회 및 예외 발생
