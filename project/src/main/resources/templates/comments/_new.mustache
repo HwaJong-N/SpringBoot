@@ -1,0 +1,67 @@
+<div class="card m-3" id="comments-new">
+    <div class="card-body">
+        <!-- 댓글 작성 폼-->
+        <form>
+            <!-- 닉네임 입력 -->
+            <div class="mb-3">
+                <label class="form-label">닉네임</label>
+                <input type="text" class="form-control form-control-sm" id="new-comment-nickname">
+            </div>
+
+            <!-- 댓글 본문 입력 -->
+            <div class="mb-3">
+                <label class="form-label">댓글 내용</label>
+                <textarea type="text" class="form-control form-control-sm" rows="3" id="new-comment-body"></textarea>
+            </div>
+
+            <!-- 히든 인풋 -->
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/article}}
+
+            <!-- 전송 버튼 -->
+            <button type="button" class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    // 댓글 생성 버튼 변수화
+    const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+    // 버튼 클릭 이벤트 감지
+    commentCreateBtn.addEventListener("click", () => {
+
+        // 닉네임과 댓글 내용에 작성된 내용으로 객체를 생성
+        // id 값으로 입력된 값을 가져옴
+        const comment = {
+            nickname: document.querySelector("#new-comment-nickname").value,
+            body: document.querySelector("#new-comment-body").value,
+            article_id: document.querySelector("#new-comment-article-id").value
+        }
+
+        // JavaScript로 RestAPI 호출
+        // 이전에 Talend API에서 하던 요청을 JavaScript에서 수행되도록
+        const url = "/api/articles/" + comment.article_id + "/comments";
+        fetch(url, {
+            method: "post", // POST 요청
+            body: JSON.stringify(comment),  // comment 객체를 JSON 형식으로 변환하여 보냄
+            headers: {
+                "Content-Type": "application/json", // body에 담긴 객체의 type이 무엇인지 명시
+            }
+        }).then(response => {
+            // fetch 응답 처리
+            // 응답이 돌아오는 경우에 대한 처리
+
+            // http 응답 코드에 따른 메세지 출력
+            const msg = (response.ok) ? "댓글이 등록되었습니다." : "댓글 등록 실패";
+            alert(msg);
+
+            // 현재 페이지 새로고침
+            window.location.reload();
+        });
+    });
+
+</script>
